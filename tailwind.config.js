@@ -17,6 +17,7 @@ module.exports = {
         'razer-black': '#111111',
         'razer-gray': '#222222',
         'razer-light-gray': '#333333',
+        'off-white': ' #f5f5f5',
       },
     },
   },

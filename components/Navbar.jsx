@@ -90,7 +90,7 @@ function Navbar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
         {/* Checkout and Clear Buttons Container */}
         <div className='flex flex-col mt-16 space-y-5'>
           <Link href='/checkout'>
-            <button class='flex mx-auto  text-black font-semibold tracking-wider bg-razer-green border-0 py-3 px-14 focus:outline-none hover:bg-razer-light-green rounded text-lg uppercase'>
+            <button class='flex mx-auto  text-black font-semibold tracking-wider bg-razer-green border-0 py-3 px-14 focus:outline-none hover:bg-razer-light-green rounded text-lg uppercase' onClick={toggleCart}>
               Checkout
             </button>
           </Link>
