@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRef } from 'react'
 import { GrClose } from 'react-icons/gr'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
+import { MdAccountCircle } from 'react-icons/md'
 
 function Navbar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
   //  Toggle Cart Function
@@ -45,8 +46,14 @@ function Navbar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
       </div>
 
       {/* Cart Container */}
-      <div className='cart absolute right-0 top-6 mx-5 ' onClick={toggleCart}>
-        <AiOutlineShoppingCart className='cursor-pointer text-2xl md:text-3xl opacity-75 hover:opacity-100 ' />
+      <div className='cart absolute right-0 top-6 mx-5 flex space-x-2 md:space-x-4 '>
+        <Link href='/login'>
+          <MdAccountCircle className='cursor-pointer text-2xl md:text-3xl opacity-75 hover:opacity-100 ' />
+        </Link>
+        <AiOutlineShoppingCart
+          className='cursor-pointer text-2xl md:text-3xl opacity-75 hover:opacity-100 '
+          onClick={toggleCart}
+        />
       </div>
 
       {/* SideBar */}
