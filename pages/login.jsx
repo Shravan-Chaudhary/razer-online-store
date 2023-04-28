@@ -1,10 +1,10 @@
-import React from 'react'
+import Link from 'next/link'
 
 function Login() {
   return (
     <div>
       <div className='w-full m-auto'>
-        <div className='mx-auto md:w-6/12'>
+        <div className='mx-auto w-11/12 md:w-1/3 bg-razer-black mb-10 mt-10 md:mb-14 md:mt-14'>
           <div className='m-auto py-12 px-6 sm:p-20 :w-10/12'>
             <div className='space-y-4'>
               <p className='font-medium text-center drop-shadow-md text-4xl md:text-5xl text-off-white'>
@@ -13,7 +13,7 @@ function Login() {
             </div>
 
             <div className='mt-12 grid gap-6 sm:grid-cols-2'>
-              <button className='py-3 px-6 rounded-xl bg-blue-50 hover:bg-blue-100 focus:bg-blue-100 active:bg-blue-200'>
+              <button className='py-3 px-6 rounded-md bg-blue-50 hover:bg-blue-100 focus:bg-blue-100 active:bg-blue-200'>
                 <div className='flex gap-4 justify-center'>
                   <img src='/google.svg' className='w-5' alt='' />
                   <span className='block w-max font-medium tracking-wide text-sm text-razer-light-gray hover:text-razer-green md:text-md'>
@@ -21,7 +21,7 @@ function Login() {
                   </span>
                 </div>
               </button>
-              <button className='py-3 px-6 rounded-xl bg-gray-900 transition hover:bg-gray-800 active:bg-gray-600 focus:bg-gray-700'>
+              <button className='py-3 px-6 rounded-md bg-gray-900 transition hover:bg-gray-800 active:bg-gray-600 focus:bg-gray-700'>
                 <div className='flex gap-4 items-center justify-center text-white'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -65,11 +65,13 @@ function Login() {
                   required
                   className='w-full bg-black rounded border border-gray-400 focus:border-razer-green focus:ring-2 focus:ring-razer-green text-base outline-none text-white py-1 md:py-2 px-2 md:px-3 leading-8 transition-colors duration-200 ease-in-out'
                 />
-                <button type='reset' className='w-max p-3 -mr-3'>
-                  <span className='text-sm tracking-wide text-off-white hover:text-razer-green md:text-md'>
-                    Forgot password ?
-                  </span>
-                </button>
+                <Link href='/forgot'>
+                  <button type='reset' className='w-max p-3 -mr-3'>
+                    <span className='text-sm tracking-wide text-off-white hover:text-razer-green md:text-md'>
+                      Forgot password ?
+                    </span>
+                  </button>
+                </Link>
               </div>
 
               <div>
@@ -78,12 +80,13 @@ function Login() {
                     Log In
                   </span>
                 </button>
-                <a href='#' type='reset' className='w-max p-3 -ml-3'>
+
+                <Link href='/signup' type='reset' className='w-max p-3 -ml-3'>
                   <span>Don&#39;t have and account? </span>
                   <span className='text-sm tracking-wide text-razer-green hover:text-razer-green md:text-md'>
                     Create new account
                   </span>
-                </a>
+                </Link>
               </div>
             </form>
           </div>
