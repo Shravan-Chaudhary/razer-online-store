@@ -1,4 +1,6 @@
 import { useRouter } from 'next/router'
+import Product from '@/models/Product'
+import mongoose from 'mongoose'
 
 export default function Page({
   cart,
@@ -6,6 +8,7 @@ export default function Page({
   removeFromCart,
   clearCart,
   subTotal,
+  product,
 }) {
   const router = useRouter()
   const { slug } = router.query
@@ -18,14 +21,14 @@ export default function Page({
           <div className='w-full mx-auto flex flex-wrap'>
             <img
               alt='ecommerce'
-              className='lg:w-3/4 w-full lg:h-auto h-64 object-cover object-center '
-              src='/razerLaptop.jpg'
+              className='lg:w-3/5 w-full lg:h-auto h-64 object-cover object-center '
+              src={product.image}
             />
 
             {/* Title */}
-            <div className='lg:w-3/12 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0'>
+            <div className='lg:w-2/6 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0'>
               <h1 className='text-razer-green text-3xl title-font font-medium mb-1'>
-                The Catcher in the Rye
+                {product.title}
               </h1>
               <div className='flex mb-4'>
                 <span className='flex items-center'>
@@ -89,13 +92,8 @@ export default function Page({
               </div>
 
               {/* Description */}
-              <p className='leading-relaxed'>
-                Fam locavore kickstarter distillery. Mixtape chillwave tumeric
-                sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo
-                juiceramps cornhole raw denim forage brooklyn. Everyday carry +1
-                seitan poutine tumeric. Gastropub blue bottle austin listicle
-                pour-over, neutra jean shorts keytar banjo tattooed umami
-                cardigan.
+              <p className='leading-relaxed text-md md:text-lg'>
+                {product.description}
               </p>
               <div className='flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5'>
                 <div className='flex'>
@@ -133,7 +131,7 @@ export default function Page({
               {/* Price and Add to Cart */}
               <div className='flex'>
                 <span className='title-font font-medium text-2xl text-white'>
-                  $58.00
+                  ₹{product.price}
                 </span>
                 <button
                   className='flex ml-auto text-black tracking-wider font-bold bg-razer-green border-0 py-4 px-10 focus:outline-none hover:bg-razer-light-green rounded'
@@ -158,4 +156,25 @@ export default function Page({
       </section>
     </div>
   )
+}
+
+// Backend Code
+export async function getServerSideProps(context) {
+  if (!mongoose.connections[0].readyState) {
+    await mongoose.connect(process.env.MONGO_URI)
+  }
+
+  try {
+    const { slug } = context.query
+    const product = await Product.findOne({ slug })
+
+    return {
+      props: { product: JSON.parse(JSON.stringify(product)) },
+    }
+  } catch (error) {
+    console.log(error)
+    return {
+      props: { product: null },
+    }
+  }
 }

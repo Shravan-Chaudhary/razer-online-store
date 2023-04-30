@@ -16,7 +16,7 @@ function Laptops({ products }) {
                 {/* Image container */}
                 <div className='bg-razer-black'>
                   <Link
-                    href={product.slug}
+                    href={`product/${product.slug}`}
                     className='block relative overflow-hidden'
                   >
                     <img
@@ -56,7 +56,7 @@ export async function getServerSideProps(context) {
   if (!mongoose.connections[0].readyState) {
     await mongoose.connect(process.env.MONGO_URI)
   }
-  let products = await Product.find()
+  let products = await Product.find({ category: 'laptop' })
   return {
     props: { products: JSON.parse(JSON.stringify(products)) },
   }
