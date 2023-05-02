@@ -2,14 +2,7 @@ import { useRouter } from 'next/router'
 import Product from '@/models/Product'
 import mongoose from 'mongoose'
 
-export default function Page({
-  cart,
-  addToCart,
-  removeFromCart,
-  clearCart,
-  subTotal,
-  product,
-}) {
+export default function Page({ addToCart, product }) {
   const router = useRouter()
   const { slug } = router.query
 
@@ -135,7 +128,7 @@ export default function Page({
                 </span>
                 <button
                   className='flex ml-auto text-black tracking-wider font-bold bg-razer-green border-0 py-4 px-10 focus:outline-none hover:bg-razer-light-green rounded'
-                  onClick={() => addToCart(slug, 1, 100000, 'Razer 15 inch')}
+                  onClick={() => addToCart({ product })}
                 >
                   Add to Cart
                 </button>

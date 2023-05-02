@@ -4,17 +4,16 @@ import Navbar from '@/components/Navbar'
 import '@/styles/globals.css'
 
 export default function App({ Component, pageProps }) {
-  const [cart, setCart] = useState({})
+  const [cart, setCart] = useState([])
   const [subtotal, setSubtotal] = useState(0)
 
   // load cart from local storage
   useEffect(() => {
-    console.log('loading cart')
-    const cart = localStorage.getItem('cart')
+    const localCart = localStorage.getItem('cart')
 
     try {
-      if (cart) {
-        setCart(JSON.parse(cart))
+      if (localCart) {
+        setCart(JSON.parse(localCart))
       }
     } catch (error) {
       console.error(error)
@@ -25,63 +24,45 @@ export default function App({ Component, pageProps }) {
   // save cart in local storage
   const saveCart = (myCart) => {
     localStorage.setItem('cart', JSON.stringify(myCart))
-
-    let subT = 0
-    let keys = Object.keys(myCart)
-    for (let i = 0; i < keys.length; i++) {
-      subT += myCart[keys[i]].price * myCart[keys[i]].qty
-    }
-    setSubtotal(subT)
   }
 
   // Add item to cart and increment if already exists
-  const addToCart = (itemCode, qty, price, name) => {
-    let newCart = cart
-    if (itemCode in cart) {
-      newCart[itemCode].qty += qty
-    } else {
-      newCart[itemCode] = { qty: 1, price, name }
+  const addToCart = ({ product }) => {
+    //  check if item is already in cart
+    const index = cart.findIndex((cartItem) => cartItem._id === product._id)
+    // if not in cart, add it
+    const newCart = [...cart]
+    if (index === -1) {
+      setCart([...cart, { ...product, qty: 1 }])
     }
-    setCart(newCart)
+    // if in cart, increment qty
+    else {
+      newCart[index].qty++
+      setCart(newCart)
+    }
+    // save cart to local storage
     saveCart(newCart)
   }
 
   // Remove item from cart
-  const removeFromCart = (itemCode, qty, price, name) => {
-    let newCart = cart
-    if (itemCode in cart) {
-      newCart[itemCode].qty -= qty
-    }
-    if (newCart[itemCode].qty <= 0) {
-      delete newCart[itemCode]
-    }
+  const removeFromCart = (product) => {
+    const newCart = cart.filter((cartItem) => cartItem._id !== product._id)
     setCart(newCart)
     saveCart(newCart)
   }
 
-  // clear cart
+  // // clear cart
   const clearCart = () => {
-    setCart({})
-    saveCart({})
+    setCart([])
+    saveCart([])
   }
+
+  //  calculate subtotal
 
   return (
     <>
-      <Navbar
-        cart={cart}
-        addToCart={addToCart}
-        removeFromCart={removeFromCart}
-        clearCart={clearCart}
-        subtotal={subtotal}
-      />
-      <Component
-        cart={cart}
-        addToCart={addToCart}
-        removeFromCart={removeFromCart}
-        clearCart={clearCart}
-        subtotal={subtotal}
-        {...pageProps}
-      />
+      <Navbar cart={cart} addToCart={addToCart} />
+      <Component cart={cart} addToCart={addToCart} {...pageProps} />
       <Footer />
     </>
   )

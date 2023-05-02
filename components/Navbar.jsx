@@ -5,7 +5,7 @@ import { GrClose } from 'react-icons/gr'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { MdAccountCircle } from 'react-icons/md'
 
-function Navbar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
+function Navbar({ cart }) {
   //  Toggle Cart Function
   const toggleCart = () => {
     if (ref.current.classList.contains('translate-x-full')) {
@@ -59,7 +59,7 @@ function Navbar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
       {/* SideBar */}
       <div
         ref={ref}
-        className='z-30 w-72 md:w-80 sidebar absolute top-0 right-0 border border-gray-500 bg-razer-light-gray rounded-lg px-8 py-10 transform transition-transform translate-x-full'
+        className='z-30 w-72 md:w-80 max-h-screen overflow-scroll sidebar absolute top-0 right-0 border border-gray-500 bg-razer-light-gray rounded-lg px-8 py-10 transform transition-transform translate-x-full'
       >
         <h2 className='font-bold text-xl text-center'>Shopping Cart</h2>
         {/* Close Button */}
@@ -72,20 +72,20 @@ function Navbar({ cart, addToCart, removeFromCart, clearCart, subTotal }) {
 
         {/* Items */}
         <ul>
-          {Object.keys(cart).length == 0 && (
+          {/* {Object.keys(cart).length == 0 && (
             <div className='my-4 font-semibold text-center text-2xl text-razer-black'>
               Your Cart is Empty
             </div>
-          )}
-          {Object.keys(cart).map((k) => {
+          )} */}
+          {cart.map((product) => {
             return (
-              <li key={k}>
+              <li key={product._id}>
                 <div className='flex flex-col space-y-1 my-6'>
                   <div className='w-2/3 text-xl font-medium'>
-                    {cart[k].name}
+                    {product.title}
                   </div>
                   <div className='w-1/3 text-gray-400 text-lg'>
-                    x{cart[k].qty}
+                    x{product.qty}
                   </div>
                 </div>
                 <hr class='h-px border-0 bg-gray-500' />
