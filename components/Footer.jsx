@@ -14,77 +14,83 @@ function Footer() {
           <div className='flex-grow flex flex-wrap md:pr-20 -mb-10 md:text-left text-center order-first'>
             <div className='lg:w-1/4 md:w-1/2 w-full px-4'>
               <h2 className='title-font font-medium text-white tracking-widest text-sm mb-3'>
-                CATEGORIES
+                SHOP
               </h2>
               <nav className='list-none mb-10 space-y-3'>
                 <li>
-                  <a className='text-gray-400 hover:text-white'>First Link</a>
+                  <a className='text-gray-400 hover:text-white'>Razer Stores</a>
                 </li>
                 <li>
-                  <a className='text-gray-400 hover:text-white'>Second Link</a>
+                  <a className='text-gray-400 hover:text-white'>Razer Cafe</a>
                 </li>
                 <li>
-                  <a className='text-gray-400 hover:text-white'>Third Link</a>
+                  <a className='text-gray-400 hover:text-white'>
+                    Store Locator
+                  </a>
                 </li>
                 <li>
-                  <a className='text-gray-400 hover:text-white'>Fourth Link</a>
+                  <a className='text-gray-400 hover:text-white'>Newsletter</a>
                 </li>
               </nav>
             </div>
             <div className='lg:w-1/4 md:w-1/2 w-full px-4'>
               <h2 className='title-font font-medium text-white tracking-widest text-sm mb-3'>
-                CATEGORIES
+                EXPLORE
               </h2>
               <nav className='list-none mb-10 space-y-3'>
                 <li>
-                  <a className='text-gray-400 hover:text-white'>First Link</a>
+                  <a className='text-gray-400 hover:text-white'>Technology</a>
                 </li>
                 <li>
-                  <a className='text-gray-400 hover:text-white'>Second Link</a>
+                  <a className='text-gray-400 hover:text-white'>Chroma RGB</a>
                 </li>
                 <li>
-                  <a className='text-gray-400 hover:text-white'>Third Link</a>
+                  <a className='text-gray-400 hover:text-white'>Concepts</a>
                 </li>
                 <li>
-                  <a className='text-gray-400 hover:text-white'>Fourth Link</a>
+                  <a className='text-gray-400 hover:text-white'>Esports</a>
                 </li>
               </nav>
             </div>
             <div className='lg:w-1/4 md:w-1/2 w-full px-4'>
               <h2 className='title-font font-medium text-white tracking-widest text-sm mb-3'>
-                CATEGORIES
+                SUPPORT
               </h2>
               <nav className='list-none mb-10 space-y-3'>
                 <li>
-                  <a className='text-gray-400 hover:text-white'>First Link</a>
+                  <a className='text-gray-400 hover:text-white'>Get Help</a>
                 </li>
                 <li>
-                  <a className='text-gray-400 hover:text-white'>Second Link</a>
+                  <a className='text-gray-400 hover:text-white'>
+                    Registration & Warranty
+                  </a>
                 </li>
                 <li>
-                  <a className='text-gray-400 hover:text-white'>Third Link</a>
+                  <a className='text-gray-400 hover:text-white'>Razer Care</a>
                 </li>
                 <li>
-                  <a className='text-gray-400 hover:text-white'>Fourth Link</a>
+                  <a className='text-gray-400 hover:text-white'>
+                    Manage Razer ID
+                  </a>
                 </li>
               </nav>
             </div>
             <div className='lg:w-1/4 md:w-1/2 w-full px-4'>
               <h2 className='title-font font-medium text-white tracking-widest text-sm mb-3'>
-                CATEGORIES
+                COMPANY
               </h2>
               <nav className='list-none mb-10 space-y-3'>
                 <li>
-                  <a className='text-gray-400 hover:text-white'>First Link</a>
+                  <a className='text-gray-400 hover:text-white'>About Us</a>
                 </li>
                 <li>
-                  <a className='text-gray-400 hover:text-white'>Second Link</a>
+                  <a className='text-gray-400 hover:text-white'>Careers</a>
                 </li>
                 <li>
-                  <a className='text-gray-400 hover:text-white'>Third Link</a>
+                  <a className='text-gray-400 hover:text-white'>Press Room</a>
                 </li>
                 <li>
-                  <a className='text-gray-400 hover:text-white'>Fourth Link</a>
+                  <a className='text-gray-400 hover:text-white'>Contact Us</a>
                 </li>
               </nav>
             </div>

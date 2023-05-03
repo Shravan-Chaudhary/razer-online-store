@@ -1,21 +1,46 @@
 import { useRouter } from 'next/router'
 import Product from '@/models/Product'
 import mongoose from 'mongoose'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function Page({ addToCart, product }) {
   const router = useRouter()
   const { slug } = router.query
+  const notify = () =>
+    toast.success('Added to Cart!', {
+      position: 'bottom-right',
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'dark',
+    })
 
   return (
     <div>
       <section className='text-white body-font overflow-hidden'>
+        <ToastContainer
+          position='bottom-right'
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme='light'
+        />
         <div className='container px-5 py-16 mx-auto'>
           {/* Image Container */}
           <div className='w-full mx-auto flex flex-wrap'>
             <img
               alt='ecommerce'
               className='lg:w-3/5 w-full lg:h-auto h-64 object-cover object-center '
-              src={product.image}
+              src={product.secondimage}
             />
 
             {/* Title */}
@@ -23,7 +48,7 @@ export default function Page({ addToCart, product }) {
               <h1 className='text-razer-green text-3xl title-font font-medium mb-1'>
                 {product.title}
               </h1>
-              <div className='flex mb-4'>
+              {/* <div className='flex mb-4'>
                 <span className='flex items-center'>
                   <svg
                     fill='currentColor'
@@ -82,10 +107,10 @@ export default function Page({ addToCart, product }) {
                   </svg>
                   <span className='text-gray-600 ml-3'>4 Reviews</span>
                 </span>
-              </div>
+              </div> */}
 
               {/* Description */}
-              <p className='leading-relaxed text-md md:text-lg'>
+              <p className='leading-relaxed text-md md:text-lg mt-6 md:mt-10'>
                 {product.description}
               </p>
               <div className='flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5'>
@@ -128,7 +153,10 @@ export default function Page({ addToCart, product }) {
                 </span>
                 <button
                   className='flex ml-auto text-black tracking-wider font-bold bg-razer-green border-0 py-4 px-10 focus:outline-none hover:bg-razer-light-green rounded'
-                  onClick={() => addToCart({ product })}
+                  onClick={() => {
+                    addToCart({ product })
+                    notify()
+                  }}
                 >
                   Add to Cart
                 </button>
