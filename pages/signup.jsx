@@ -1,8 +1,67 @@
 import Link from 'next/link'
+import { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function Signup() {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const userData = { name, email, password }
+    let res = await fetch('http://localhost:3000/api/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    })
+    let response = await res.json()
+    notify()
+    setName('')
+    setEmail('')
+    setPassword('')
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    if (name === 'name') {
+      setName(value)
+    } else if (name === 'email') {
+      setEmail(value)
+    } else if (name === 'password') {
+      setPassword(value)
+    }
+  }
+
+  const notify = () =>
+    toast.success('Account Created Successfully', {
+      position: 'top-left',
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'dark',
+    })
+
   return (
     <div>
+      <ToastContainer
+        position='top-left'
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='dark'
+      />
       <div className='w-full m-auto'>
         <div className='mx-auto w-11/12 md:w-1/3 bg-razer-black mb-10 mt-10 md:mb-14 md:mt-14'>
           <div className='m-auto py-12 px-6 sm:p-20 :w-10/12'>
@@ -44,9 +103,11 @@ function Signup() {
               </span>
             </div>
 
-            <form action='' className='space-y-6 py-6 mb-10'>
+            <form onSubmit={handleSubmit} className='space-y-6 py-6 mb-10'>
               <div>
                 <input
+                  onChange={handleChange}
+                  value={name}
                   type='name'
                   id='name'
                   name='name'
@@ -57,6 +118,8 @@ function Signup() {
               </div>
               <div>
                 <input
+                  onChange={handleChange}
+                  value={email}
                   type='email'
                   id='email'
                   name='email'
@@ -68,6 +131,8 @@ function Signup() {
 
               <div className='flex flex-col items-end'>
                 <input
+                  onChange={handleChange}
+                  value={password}
                   type='password'
                   id='password'
                   name='password'

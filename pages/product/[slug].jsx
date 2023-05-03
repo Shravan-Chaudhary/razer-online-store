@@ -34,12 +34,12 @@ export default function Page({ addToCart, product }) {
           pauseOnHover
           theme='light'
         />
-        <div className='container px-5 py-16 mx-auto'>
+        <div className='container px-5 py-16 mx-auto mb-20'>
           {/* Image Container */}
           <div className='w-full mx-auto flex flex-wrap'>
             <img
               alt='ecommerce'
-              className='lg:w-3/5 w-full lg:h-auto h-64 object-cover object-center '
+              className='lg:w-2/3 w-full lg:h-auto h-64 object-cover object-center '
               src={product.secondimage}
             />
 
