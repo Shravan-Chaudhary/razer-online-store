@@ -25,9 +25,11 @@ function Login() {
     notify(success, error)
     setEmail('')
     setPassword('')
-    setInterval(() => {
-      router.push('/')
-    }, 1000)
+    if (success) {
+      setInterval(() => {
+        router.push('/')
+      }, 1000)
+    }
   }
 
   const handleChange = (e) => {
